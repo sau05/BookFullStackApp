@@ -12,10 +12,8 @@ function AuthorController() {
     }
 
     this.addAuthor = function (req, res) {
-        console.log(req.body)
         if (req.body.firstName && req.body.lastName) {
-            console.log('success:' + author.length)
-
+        
             try {
                 let newAuthor = {
                     authorId: author.length + 1,

@@ -22,7 +22,6 @@ class Home extends React.Component {
                 this.setState({
                     list: data.result
                 })
-                console.log(data.result)
             })
             .catch(err => {
                 console.log(err)
@@ -33,7 +32,6 @@ class Home extends React.Component {
             .then(result =>
                 result.json()
             ).then(data => {
-                console.log(data)
                 this.setState({
                     authorList: data.result
                 })

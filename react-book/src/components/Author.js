@@ -12,7 +12,6 @@ class Author extends React.Component {
     }
 
     componentDidMount() {
-        console.log('didmount')
         fetch('http://localhost:8080/authors', {
             method: 'GET'
         }).then(result => result.json())

@@ -4,10 +4,8 @@ import { Form, Col, Button, ListGroup, ListGroupItem } from 'react-bootstrap';
 
 const BookListAddItem = (props) => {
 
-    console.log(props)
     const [name, setName] = React.useState('');
     const [isbn, setIsbn] = React.useState('');
-    // const [list, setList] = props.list
     const list = props.list;
     const authorList = props.authorList;
     let authorId = '';
@@ -20,14 +18,11 @@ const BookListAddItem = (props) => {
     }
 
     const handleAuthorChange = event => {
-        console.log(event.target.value)
         authorId = event.target.value
     }
 
     const handleSubmit = event => {
         if (name && isbn) {
-            console.log(name)
-            // setList(list.concat(value));
             fetch('http://localhost:8080/book', {
                 method: 'post',
                 headers: {
@@ -40,7 +35,6 @@ const BookListAddItem = (props) => {
                     authorId: authorId
                 })
             }).then((result) => {
-
                 setName('');
                 setIsbn('');
                 window.location.reload();
@@ -87,7 +81,6 @@ const BookListAddItem = (props) => {
                     <Form.Group as={Col}>
                         <Form.Label>Book List</Form.Label>
                         {list && <ListGroup>
-                            {console.log(list)}
                             {list.map((item, index) => (
                                 <ListGroupItem><Link key={index} to={{ pathname: `/book/${item.bookId}`, id: item.bookId }}>{item.name}</Link></ListGroupItem>
                             ))}

@@ -4,7 +4,6 @@ const author = require('../models/author')
 
 function BookController() {
     this.bookList = function (req, res) {
-        console.log(book)
         res.status(config.HTTP_SUCCESS).send({
             status: config.HTTP_SUCCESS,
             code: config.HTTP_SUCCESS,
@@ -14,12 +13,9 @@ function BookController() {
     }
 
     this.addBook = function (req, res) {
-        console.log(req.body)
         if (req.body.name && req.body.isbn && req.body.authorId) {
-            console.log('success:' + book.length)
-
+            
             try {
-                let author = {}
                 let newBook = {
                     bookId: book.length + 1,
                     isbn: req.body.isbn,
@@ -52,7 +48,6 @@ function BookController() {
         const id = req.params.id
         const result = book.find(book => book.bookId == id)
         const authorItem = author.find(author => author.authorId == result.authorId)
-        console.log(author)
         result.author = authorItem
         res.status(config.HTTP_SUCCESS).send({
             status: config.HTTP_SUCCESS,
