@@ -1,0 +1,25 @@
+/node-book/node_modules
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/react-book//node_modules
+/react-book/.pnp
+/react-book/.pnp.js
+
+# testing
+/react-book/coverage
+
+# production
+/react-book/build
+
+# misc
+/react-book/.DS_Store
+/react-book/.env.local
+/react-book/.env.development.local
+/react-book/.env.test.local
+/react-book/.env.production.local
+
+/react-book/npm-debug.log*
+/react-book/yarn-debug.log*
+/react-book/yarn-error.log*
