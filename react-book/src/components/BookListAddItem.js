@@ -8,7 +8,9 @@ const BookListAddItem = (props) => {
     const [isbn, setIsbn] = React.useState('');
     const list = props.list;
     const authorList = props.authorList;
-    let authorId = '';
+    const [authorId, setAuthorId] = React.useState('');
+    const [buttonState, setButtonState] = React.useState(true);
+
     const handleNameChange = event => {
         setName(event.target.value);
     };
@@ -18,11 +20,12 @@ const BookListAddItem = (props) => {
     }
 
     const handleAuthorChange = event => {
-        authorId = event.target.value
+        setButtonState(event.target.selectedIndex === 0);
+        setAuthorId(event.target.value)
     }
 
     const handleSubmit = event => {
-        if (name && isbn) {
+        if (name && isbn && authorId) {
             fetch('http://localhost:8080/book', {
                 method: 'post',
                 headers: {
@@ -59,7 +62,7 @@ const BookListAddItem = (props) => {
                     <Form.Group as={Col} controlId="formGridState">
                         <Form.Label>Author</Form.Label>
                         <Form.Control as="select" defaultValue="Choose..." onChange={handleAuthorChange}>
-                            <option>Choose...</option>
+                            <option>Choose Author...</option>
                             {
                                 authorList.map(list => (
                                     <option
@@ -72,7 +75,7 @@ const BookListAddItem = (props) => {
                         </Form.Control>
                     </Form.Group>
                 </Form.Row>
-                <Button variant="primary" type="submit">
+                <Button variant="primary" type="submit" disabled={buttonState}>
                     Add Book
                 </Button>
                 <Link to={{ pathname: `/author` }}>Go to Author list</Link>
